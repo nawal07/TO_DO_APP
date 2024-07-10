@@ -1,24 +1,27 @@
 import Button from './components/Button';
 import Input from './components/Input';
 import TextArea from './components/TextArea';
-import Card from './components/Card';
 import { useState } from 'react';
 import './App.css';
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({ title: '', desc: '' });
   const [todo, setTodo] = useState([]);
 
-  const onTitleChange = e => {
-    setData({ ...data, title: e.target.value });
+  // const onTitleChange = e => {
+  //   setData({ ...data, title: e.target.value });
+  //   console.log(data);
+  // };
+
+  // const onDescChange = e => {
+  //   setData({ ...data, desc: e.target.value });
+  //   console.log(data);
+  // };
+
+  const onchange = (e, key) => {
+    setData({ ...data, [key]: e.target.value });
     console.log(data);
   };
-
-  const onDescChange = e => {
-    setData({ ...data, desc: e.target.value });
-    console.log(data);
-  };
-
   const onclick = () => {
     if (data.title != '' && data.desc != '') {
       setTodo([...todo, data]);
@@ -42,8 +45,18 @@ const App = () => {
             <h1>TO-DO </h1>
             <div className="to_do_head">
               <div className="todo-head-panel">
-                <Input onchange={onTitleChange} value={data.title} />
-                <TextArea onchange={onDescChange} value={data.desc} />
+                <Input
+                  onchange={e => {
+                    onchange(e, 'title');
+                  }}
+                  value={data.title}
+                />
+                <TextArea
+                  onchange={e => {
+                    onchange(e, 'desc');
+                  }}
+                  value={data.desc}
+                />
               </div>
               <Button onclick={onclick}>ADD </Button>
             </div>
@@ -53,11 +66,11 @@ const App = () => {
 
             {todo.map((item, index) => {
               return (
-                <div className="todo_card">
+                <div key={index} className="todo_card">
                   <h3> {item.title}</h3>
                   <p>{item.desc}</p>
                   <i
-                    class="fa-solid fa-trash"
+                    className="fa-solid fa-trash"
                     onClick={() => {
                       deleteTodo(index);
                     }}
