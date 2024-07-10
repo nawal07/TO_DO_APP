@@ -33,7 +33,8 @@
 .to_do_head {
   padding-top: 10px;
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  align-items: center;
   justify-content: space-between;
   padding-bottom: 10px;
 }
@@ -56,4 +57,5 @@
 .fa-trash{
   position: absolute;
   right: 20px;
+  bottom: 15px;
 }
