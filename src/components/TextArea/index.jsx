@@ -1,6 +1,6 @@
 import './text.css';
 
-const TextArea = ({ onchange, value }) => {
+const TextArea = ({ onchange, value, onkeydown }) => {
   return (
     <>
       <textarea
@@ -9,6 +9,7 @@ const TextArea = ({ onchange, value }) => {
         rows={3}
         onChange={onchange}
         value={value}
+        onKeyDown={onkeydown}
       ></textarea>
     </>
   );

@@ -22,6 +22,7 @@ const App = () => {
     setData({ ...data, [key]: e.target.value });
     console.log(data);
   };
+
   const onclick = () => {
     if (data.title != '' && data.desc != '') {
       setTodo([...todo, data]);
@@ -37,6 +38,11 @@ const App = () => {
     console.log(`Deleted To Do at ${index + 1} `);
   };
 
+  onkeydown = e => {
+    if (e.key == 'Enter') {
+      onclick();
+    }
+  };
   return (
     <>
       <div className="container">
@@ -52,6 +58,7 @@ const App = () => {
                   value={data.title}
                 />
                 <TextArea
+                onkeydown={onkeydown}
                   onchange={e => {
                     onchange(e, 'desc');
                   }}
